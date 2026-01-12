@@ -5,6 +5,7 @@ const wordLists = {
     foods,
     movies,
     sports,
+    geography,
     'vocab6thGrade': vocab6thGrade,
     'vocab8thGrade': vocab8thGrade,
     'vocabHighSchool': vocabHighSchool
