@@ -3,6 +3,8 @@ let currentWord = '';
 let guessedLetters = new Set();
 let wrongGuesses = 0;
 const maxWrongGuesses = 6;
+const recentWords = [];
+const maxRecentWords = 10;
 
 // DOM elements
 const wordDisplay = document.getElementById('wordDisplay');
@@ -139,11 +141,31 @@ function endGame(won) {
     guessesRemaining.textContent = '';
 }
 
+// Select a word, avoiding recently used words
+function selectWord(words) {
+    let word;
+    let attempts = 0;
+    const maxAttempts = 50;
+
+    do {
+        word = words[Math.floor(Math.random() * words.length)];
+        attempts++;
+    } while (recentWords.includes(word) && attempts < maxAttempts);
+
+    // Add to recent words and trim to max size
+    recentWords.push(word);
+    if (recentWords.length > maxRecentWords) {
+        recentWords.shift();
+    }
+
+    return word;
+}
+
 // Start new game
 function newGame() {
     const selectedList = wordListSelect.value;
     const words = wordLists[selectedList];
-    currentWord = words[Math.floor(Math.random() * words.length)];
+    currentWord = selectWord(words);
     guessedLetters = new Set();
     wrongGuesses = 0;
 
