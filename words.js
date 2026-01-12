@@ -1,27 +1,11 @@
-// Word lists - add more words to each category as needed
+// Combine all word lists into a single object
 const wordLists = {
-    animals: [
-        'elephant', 'giraffe', 'penguin', 'dolphin', 'kangaroo',
-        'butterfly', 'crocodile', 'flamingo', 'hedgehog', 'octopus',
-        'panda', 'rabbit', 'tiger', 'whale', 'zebra'
-    ],
-    countries: [
-        'australia', 'brazil', 'canada', 'denmark', 'egypt',
-        'france', 'germany', 'hungary', 'ireland', 'japan',
-        'kenya', 'mexico', 'norway', 'portugal', 'sweden'
-    ],
-    foods: [
-        'avocado', 'banana', 'chocolate', 'doughnut', 'espresso',
-        'hamburger', 'lasagna', 'pancakes', 'pizza', 'sandwich',
-        'spaghetti', 'strawberry', 'sushi', 'tacos', 'waffles'
-    ],
-    movies: [
-        'avatar', 'frozen', 'gladiator', 'inception', 'jaws',
-        'matrix', 'rocky', 'shrek', 'titanic', 'up'
-    ],
-    sports: [
-        'badminton', 'baseball', 'basketball', 'boxing', 'cricket',
-        'cycling', 'football', 'golf', 'hockey', 'rugby',
-        'skiing', 'swimming', 'tennis', 'volleyball', 'wrestling'
-    ]
+    animals,
+    countries,
+    foods,
+    movies,
+    sports,
+    'vocab6thGrade': vocab6thGrade,
+    'vocab8thGrade': vocab8thGrade,
+    'vocabHighSchool': vocabHighSchool
 };

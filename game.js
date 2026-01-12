@@ -18,9 +18,9 @@ const bodyParts = ['head', 'body', 'leftArm', 'rightArm', 'leftLeg', 'rightLeg']
 // Initialize keyboard
 function createKeyboard() {
     const rows = [
-        'qwertyuiop',
-        'asdfghjkl',
-        'zxcvbnm'
+        'abcdefghi',
+        'jklmnopqr',
+        'stuvwxyz'
     ];
 
     keyboard.innerHTML = '';
