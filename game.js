@@ -50,16 +50,28 @@ function createKeyboard() {
 // Update word display
 function updateWordDisplay() {
     wordDisplay.innerHTML = '';
-    currentWord.split('').forEach(letter => {
-        const slot = document.createElement('div');
-        slot.className = 'letter-slot';
-        if (letter === ' ') {
-            slot.style.border = 'none';
-            slot.style.width = '20px';
-        } else {
+    const words = currentWord.split(' ');
+
+    words.forEach((word, wordIndex) => {
+        // Create a container for each word to prevent mid-word wrapping
+        const wordContainer = document.createElement('div');
+        wordContainer.className = 'word-group';
+
+        word.split('').forEach(letter => {
+            const slot = document.createElement('div');
+            slot.className = 'letter-slot';
             slot.textContent = guessedLetters.has(letter.toLowerCase()) ? letter : '';
+            wordContainer.appendChild(slot);
+        });
+
+        wordDisplay.appendChild(wordContainer);
+
+        // Add space between words (but not after the last word)
+        if (wordIndex < words.length - 1) {
+            const space = document.createElement('div');
+            space.className = 'word-space';
+            wordDisplay.appendChild(space);
         }
-        wordDisplay.appendChild(slot);
     });
 }
 
@@ -142,16 +154,25 @@ function endGame(won) {
         status.className = 'status lose';
         // Reveal the word
         wordDisplay.innerHTML = '';
-        currentWord.split('').forEach(letter => {
-            const slot = document.createElement('div');
-            slot.className = 'letter-slot';
-            if (letter === ' ') {
-                slot.style.border = 'none';
-                slot.style.width = '20px';
-            } else {
+        const words = currentWord.split(' ');
+        words.forEach((word, wordIndex) => {
+            const wordContainer = document.createElement('div');
+            wordContainer.className = 'word-group';
+
+            word.split('').forEach(letter => {
+                const slot = document.createElement('div');
+                slot.className = 'letter-slot';
                 slot.textContent = letter;
+                wordContainer.appendChild(slot);
+            });
+
+            wordDisplay.appendChild(wordContainer);
+
+            if (wordIndex < words.length - 1) {
+                const space = document.createElement('div');
+                space.className = 'word-space';
+                wordDisplay.appendChild(space);
             }
-            wordDisplay.appendChild(slot);
         });
     }
     guessesRemaining.textContent = '';
