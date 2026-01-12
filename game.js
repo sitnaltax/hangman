@@ -6,6 +6,10 @@ const maxWrongGuesses = 6;
 const recentWords = [];
 const maxRecentWords = 10;
 
+// Streak tracking
+let winStreak = 0;
+let streakSpareGuesses = 0;
+
 // DOM elements
 const wordDisplay = document.getElementById('wordDisplay');
 const keyboard = document.getElementById('keyboard');
@@ -119,9 +123,21 @@ function endGame(won) {
     });
 
     if (won) {
-        status.textContent = 'You won!';
+        const spareGuesses = maxWrongGuesses - wrongGuesses;
+        winStreak++;
+        streakSpareGuesses += spareGuesses;
+
+        if (winStreak >= 2) {
+            status.textContent = `You won! Streak: ${winStreak} wins, ${streakSpareGuesses} spare guesses`;
+        } else {
+            status.textContent = 'You won!';
+        }
         status.className = 'status win';
     } else {
+        // Reset streak on loss
+        winStreak = 0;
+        streakSpareGuesses = 0;
+
         status.textContent = `Game Over! The word was: ${currentWord}`;
         status.className = 'status lose';
         // Reveal the word
