@@ -157,7 +157,9 @@ function endGame(won) {
     guessesRemaining.textContent = '';
 }
 
-// Select a word, avoiding recently used words
+// Select a word, avoiding recently used words and short words
+const minWordLength = 6;
+
 function selectWord(words) {
     let word;
     let attempts = 0;
@@ -166,7 +168,7 @@ function selectWord(words) {
     do {
         word = words[Math.floor(Math.random() * words.length)];
         attempts++;
-    } while (recentWords.includes(word) && attempts < maxAttempts);
+    } while ((recentWords.includes(word) || word.replace(/\s/g, '').length < minWordLength) && attempts < maxAttempts);
 
     // Add to recent words and trim to max size
     recentWords.push(word);
